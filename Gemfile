@@ -62,3 +62,4 @@ end
 #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'table_print'
 gem 'letter_opener'
+gem 'dotenv-rails'
