@@ -1,45 +1,48 @@
-<h1> Crée un évènement </h1>
+<div class="d-flex justify-content-center mb-5 mt-5">
+  <h1> Crée un évènement </h1>
+</div>
 
 <%= form_with model: @event, local: true do |form| %>
 
-<div class="container col-lg-6 col-md-3 col-sm-12">
-	<div class="form-group text-center ">
-
-		<div class="form-group">
-			<%= form.label :start_date, 'Date de début' %><br>
-			<%= form.date_field(:start_date) %>
-		</div>
-
-		<div class="form-group">
-			<%= form.label :duration, 'Durée' %><br>
-			<%= form.number_field(:duration, in: 0..120, step: 5) %>
-		</div>
-
-		<div class="form-group">
+<div class="container col-lg-8 col-md-3 col-sm-12 ">
+	<div class="form-row ">
+    <div class="col-md-6 mb-3 font-weight-bold">
 			<%= form.label :title, 'Titre' %><br>
-			<%= form.text_field :title, class: 'form-control' , required: true %>
+			<%= form.text_field :title, class: 'form-control' , required: true, placeholder: 'Anniv de Kim K. (mon hamster) ' %>
 		</div>
-
-		<div class="form-group">
-			<%= form.label :description, 'Description' %><br>
-			<%= form.text_area :description, class: 'form-control' , required: true %>
+    <div class="col-md-6 mb-3 font-weight-bold">
+			<%= form.label :start_date, 'Date de début' %><br>
+			<%= form.date_field :start_date, class: 'form-control' %>
 		</div>
+  </div>
 
-		<div class="form-group">
-			<%= form.label :price, 'Prix' %><br>
-			<%= form.number_field(:price, in: 1..1000) %>
-		</div>	
-
-		<div class="form-group">
+  <div class="form-row">
+    <div class="col-md-6 mb-3 font-weight-bold">
 			<%= form.label :location, 'Lieu' %><br>
-			<%= form.text_field :location, class: 'form-control' , required: true %>
-		</div>		
-
-		<div class="form-group">
-			<%= form.submit 'Enregistrer', class: 'btn btn-success' %>
+			<%= form.text_field :location, class: 'form-control' , required: true, placeholder: 'Ma petite villa de 500m²' %>
+		</div>
+		<div class="col-md-6 mb-3 font-weight-bold">
+			<%= form.label :duration, 'Durée' %><br>
+			<%= form.number_field :duration, in: 0..120, step: 5, class: 'form-control', placeholder: 'min' %>
+		</div>
+  </div>
+  <div class="form-group">
+		<div class="mb-3 font-weight-bold">
+			<%= form.label :description, 'Description' %><br>
+			<%= form.text_area :description, class: 'form-control' , required: true, placeholder: "C'est simple, on fait Projet X mais en mieux et à la maison..." %>
 		</div>
 
+		<div class="mb-3 font-weight-bold">
+			<%= form.label :price, 'Prix' %><br>
+			<%= form.number_field :price, in: 1..1000, class: 'form-control', placeholder: '€' %>
+		</div>
+  </div>
+
+	<div class="">
+		<%= form.submit 'Enregistrer', class: 'btn btn-primary btn-lg btn-block' %>
 	</div>
+
 </div>
+
 
 <% end %>
