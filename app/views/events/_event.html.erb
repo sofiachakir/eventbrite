@@ -3,7 +3,7 @@
 	<div class="card-header">
 		<h5 class="card-title"><%=event.title%></h5>
 		<h6 class="card-subtitle mb-2 text-muted">
-			Créé par <%= link_to event.admin.first_name, '#' %>, 
+			Créé par <%= link_to event.admin.first_name, user_path(event.admin) %>, 
       le <%= event.created_at.strftime("%d/%m/%Y à %H:%I") %>
 		</h6>
 	</div>
