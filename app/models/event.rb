@@ -21,4 +21,8 @@ class Event < ApplicationRecord
       errors.add(:duration, "Must be multiple of five")
     end
   end
+
+  def end_date
+    self.start_date + duration.minutes 
+  end
 end

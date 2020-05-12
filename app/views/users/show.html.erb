@@ -12,5 +12,5 @@
 </div>
 
 <% @user.administarted_events.each do |event| %>
-  <%= link_to event.title, '#' %><br>
+  <%= link_to event.title, event_path(event) %><br>
 <%end%>
