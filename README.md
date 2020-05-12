@@ -1,24 +1,17 @@
-# README
+# Bienvenue sur notre Crazy Eventbrite!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Avant de commencer :
+1. Faire un `bundle install`
+2. Lancer la création de la base de données avec un `rails db:create`
+3. Passer toutes les migrations `rails db:migrate`
+4. Remplir la BDD avec un `rails db:seed`
+5. Y'a plus qu'à lancer le server : `rails server`
 
-Things you may want to cover:
+Tu peux accéder à notre site sur [http://localhost:3000/](http://localhost:3000/)
 
-* Ruby version
+## Fonctionnalités :
+Dans la page d'accueil, tu peux voir tous les évènements ! Si tu veux en savoir plus, clique sur le bouton "En savoir plus".
+Tu pourras accéder à la page de ton profil, et voir tous les évènements que tu as créés.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## En production : 
+Notre site est en ligne [https://crazyeventbrite.herokuapp.com/](https://crazyeventbrite.herokuapp.com/)
