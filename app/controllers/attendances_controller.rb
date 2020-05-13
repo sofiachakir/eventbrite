@@ -7,21 +7,41 @@ class AttendancesController < ApplicationController
   def new
   	@event = Event.find(params[:event_id])
   	@attendance = Attendance.new
+    @amount = @event.price*100
   	puts params
   end
 
   def create
   	@event = Event.find(params[:event_id])
-  	@attendance = Attendance.new(event: @event, user: current_user)
-  	
+
+    # Amount in cents
+    @amount = @event.price*100
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      description: 'Rails Stripe customer',
+      currency: 'eur',
+    })
+
+    @attendance = Attendance.create(event: @event, user: current_user, stripe_customer_id: customer.id)
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_event_attendance_path(@event)
   end
+
+  private
 
   def current_user_is_participant?
   	event = Event.find(params[:event_id])
   	!Attendance.where(event: event,user: current_user).empty?
   end
-
-  private
 
   def event_admin_cannot_attend_as_participant
   	# Redirige vers l'accueil si on est l'admin
