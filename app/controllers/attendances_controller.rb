@@ -1,9 +1,15 @@
 class AttendancesController < ApplicationController
-	before_action :authenticate_user!, only: [:new, :create]
+	before_action :authenticate_user!
 	before_action :event_admin_cannot_attend_as_participant, only: [:new, :create]
 	before_action :user_cannot_subscribe_if_already_participating, only: [:new, :create]
+  before_action :current_user_is_admin, only: [:index]
 
-
+  def index
+    @event = Event.find(params[:event_id])
+    @all_attendances = @event.attendances
+    @participants = @all_attendances.map{|a| a.user}
+  end
+  
   def new
   	@event = Event.find(params[:event_id])
   	@attendance = Attendance.new
@@ -56,6 +62,14 @@ class AttendancesController < ApplicationController
   	# Renvoie vrai si on est un nouveau participant
   	if current_user_is_participant?
        redirect_to root_path
+    end
+  end
+
+  def current_user_is_admin
+    # Redirige vers l'accueil si on est pas l'admin
+    unless current_user == Event.find(params[:event_id]).admin
+      # Ne peut pas accéder au formulaire d'inscription de son propre évènement
+      redirect_to root_path
     end
   end
 
