@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-	<% if user_signed_in? || Attendance.where(event: @event,user: current_user).empty? || current_user != @event.admin %>
+	<% if user_signed_in? && Attendance.where(event: @event,user: current_user).empty? && current_user != @event.admin %>
 	<%= link_to "Participer à l'évènement", new_event_attendance_path(@event), class: 'btn btn-primary btn-lg btn-block mt-5' %>
 	<% end %>
 </div>
