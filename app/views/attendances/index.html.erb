@@ -1,0 +1,14 @@
+<div class="container">
+	<h1 class="h3 mb-3 font-weight-normal text-center"> Les participants : </h1>
+	<% @participants.each do |participant| %>
+		<div class="card mt-3 mb-3">
+			<div class="card-body">
+				<p class="card-text">
+					<%= participant.first_name %> <%= participant.last_name %> (email: <%= participant.email %> )
+				</p>
+			</div>
+		</div>
+	<% end %>
+
+	<%= link_to "Editer mon évènement", edit_event_path(@event), class: 'btn btn-primary btn-lg btn-block mt-5' %>
+</div>
