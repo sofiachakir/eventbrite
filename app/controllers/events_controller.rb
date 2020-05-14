@@ -10,11 +10,13 @@ class EventsController < ApplicationController
   end
 
   def create
+    puts params
   	@event = Event.new(event_params)
   	@event.admin = current_user
   	if @event.save
+
   		flash[:success] = "Ton évènement a bien été créé !"
-  		redirect_to root_path
+  		redirect_to event_path(@event)
   	else
   		render :new
   	end
@@ -27,7 +29,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-  	params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location)
+  	params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location, :event_picture)
   end
 
 end

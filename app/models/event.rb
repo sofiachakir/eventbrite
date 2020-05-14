@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  has_one_attached :event_picture
   belongs_to :admin, class_name: "User"
   has_many :attendances
   has_many :users, through: :attendances
@@ -23,6 +24,6 @@ class Event < ApplicationRecord
   end
 
   def end_date
-    self.start_date + duration.minutes 
+    self.start_date + duration.minutes
   end
 end

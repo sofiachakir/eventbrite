@@ -17,6 +17,21 @@
 		</div>
 	</div>
 
+
+
+  <%if @event.event_picture.attached?%>
+    <%= image_tag @event.event_picture, alt: 'event picture' %>
+  <%else%>
+    <p>=== Il n'y a pas encore d'image pour l'évènement ===</p>
+  <%end%>
+  <h3>Changer d'avatar ?</h3>
+  <%= form_tag event_event_picture_index_path(@event), multipart: true do %>
+    <%= file_field_tag :event_picture %>
+    <%= submit_tag "mettre à jour" %>
+  <% end %>
+
+
+
 	<% if user_signed_in? && Attendance.where(event: @event,user: current_user).empty? && current_user != @event.admin %>
 	<%= link_to "Participer à l'évènement", new_event_attendance_path(@event), class: 'btn btn-primary btn-lg btn-block mt-5' %>
 	<% end %>
