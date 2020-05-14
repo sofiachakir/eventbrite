@@ -1,5 +1,16 @@
 <div class="card mt-3">
 	<div class="card-header">
+
+    <%if @user.avatar.attached?%>
+      <%= image_tag @user.avatar, alt: 'avatar' %>
+    <%else%>
+      <%= image_tag asset_path('avatar.png'), alt: 'avatar' %>
+    <%end%>
+    <h3>Changer d'avatar ?</h3>
+    <%= form_tag user_avatar_index_path(@user), multipart: true do %>
+      <%= file_field_tag :avatar %>
+      <%= submit_tag "mettre à jour" %>
+    <% end %>
 		<h4 class="card-title"> <%= @user.first_name %>  <%= @user.last_name %> </h4>
 	</div>
 	<div class="card-body">
@@ -10,6 +21,7 @@
     <%= link_to 'Changer mes infos perso', edit_user_registration_path, class: "card-link " %>
 	</div>
 </div>
+
 
 <% @user.administarted_events.each do |event| %>
   <%= link_to event.title, event_path(event) %><br>
